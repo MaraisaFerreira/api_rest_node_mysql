@@ -11,14 +11,23 @@ router.get('/:id', (req, res) => {
 	const id = req.params.id;
 
 	res.status(200).send({
-		message: `Get music by id: ${id}`,
+		message: `Get music by id - ${id}`,
 		id,
 	});
 });
 
-router.post('', (req, res) => {
+router.post('/', (req, res) => {
 	res.status(200).send({
 		message: 'Post music',
+	});
+});
+
+router.delete('/:id', (req, res) => {
+	const id = req.params.id;
+
+	res.status(200).send({
+		message: `Delete music by id - ${id}`,
+		id,
 	});
 });
 
