@@ -8,7 +8,11 @@ const music = require('./routes/music');
 const PORT = process.env.PORT || 3001;
 
 const app = express();
+
 app.use(morgan('dev'));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.use('/movies', movies);
 app.use('/music', music);
