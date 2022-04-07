@@ -17,8 +17,15 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+	const music = {
+		title: req.body.title,
+		category: req.body.category || '',
+		artist: req.body.artist,
+	};
+
 	res.status(200).send({
 		message: 'Post music',
+		music,
 	});
 });
 

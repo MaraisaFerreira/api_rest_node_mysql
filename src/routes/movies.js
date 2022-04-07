@@ -17,8 +17,17 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+	const movie = {
+		title: req.body.title,
+		year: req.body.year,
+		category: req.body.category || '',
+		rating: req.body.rating,
+		url_banner: req.body.url_banner || '',
+	};
+
 	res.status(200).send({
 		message: 'Post movies...',
+		movie,
 	});
 });
 
