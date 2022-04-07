@@ -11,7 +11,7 @@ router.get('/:id', (req, res) => {
 	const id = req.params.id;
 
 	res.status(200).send({
-		message: `Get movie by id: ${id}`,
+		message: `Get movie by id - ${id}`,
 		id,
 	});
 });
@@ -26,7 +26,7 @@ router.delete('/:id', (req, res) => {
 	const id = req.params.id;
 
 	res.status(200).send({
-		message: `Delete movie by id: ${id}`,
+		message: `Delete movie by id - ${id}`,
 		id,
 	});
 });
