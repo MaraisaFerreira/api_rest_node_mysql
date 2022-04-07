@@ -13,9 +13,18 @@ app.use(morgan('dev'));
 app.use('/movies', movies);
 app.use('/music', music);
 
-app.get('/', (req, res) => {
-	res.status(200).send({
-		message: 'Hello World!',
+app.use((req, res, next) => {
+	const error = new Error('Not Found...');
+	error.status = 404;
+
+	next(error);
+});
+
+app.use((error, req, res) => {
+	res.status(error.status || 500).send({
+		error: {
+			message: error.message,
+		},
 	});
 });
 
