@@ -14,6 +14,36 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use((req, res, next) => {
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header(
+		'Access-Control-Allow-Header',
+		'ContentType',
+		'Origin',
+		'X-Requested-Width',
+		'Accept',
+		'Authorization'
+	);
+
+	if (req.method === 'OPTIONS') {
+		res
+			.header(
+				'Access-Control-Allow-Methods',
+				'GET',
+				'POST',
+				'DELETE',
+				'PATCH',
+				'PUT'
+			)
+			.status(200)
+			.send({
+				message: 'Allow Methods',
+			});
+	}
+
+	next();
+});
+
 app.use('/movies', movies);
 app.use('/music', music);
 
