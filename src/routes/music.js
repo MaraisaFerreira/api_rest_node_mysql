@@ -21,6 +21,7 @@ router.post('/', (req, res) => {
 		title: req.body.title,
 		category: req.body.category || '',
 		artist: req.body.artist,
+		price: req.body.price,
 	};
 
 	res.status(200).send({

@@ -23,6 +23,7 @@ router.post('/', (req, res) => {
 		category: req.body.category || '',
 		rating: req.body.rating,
 		url_banner: req.body.url_banner || '',
+		price: req.body.price,
 	};
 
 	res.status(200).send({
