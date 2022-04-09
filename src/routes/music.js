@@ -49,8 +49,9 @@ router.post('/', (req, res) => {
 		price: req.body.price,
 	};
 
-	const sql =
-		'INSERT INTO music (music_title, music_category, music_artist, music_price) VALUES (?,?,?,?)';
+	const sql = `INSERT INTO music
+		(music_title, music_category, music_artist, music_price)
+		VALUES (?,?,?,?)`;
 
 	db.query(
 		sql,
@@ -78,10 +79,9 @@ router.patch('/:id', (req, res) => {
 	const { artist } = req.body;
 	const { price } = req.body;
 
-	const sql =
-		'UPDATE music SET ' +
-		'music_title= ?, music_category = ?, music_artist = ?, music_price = ? ' +
-		'WHERE music_id = ?';
+	const sql = `UPDATE music SET
+			music_title= ?, music_category = ?, music_artist = ?, music_price = ?
+				WHERE music_id = ?`;
 
 	db.query(sql, [title, category, artist, price, id], (err, result) => {
 		if (err) {

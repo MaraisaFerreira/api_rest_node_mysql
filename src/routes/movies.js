@@ -49,10 +49,9 @@ router.post('/', (req, res) => {
 		price: req.body.price,
 	};
 
-	const sql =
-		'INSERT INTO movies ' +
-		'(movies_title, movies_year, movies_category, movies_rating, ' +
-		'movies_url_banner, movies_price) VALUES (?, ?, ?, ?, ?, ?)';
+	const sql = `INSERT INTO movies
+			(movies_title, movies_year, movies_category, movies_rating,
+				movies_url_banner, movies_price) VALUES (?, ?, ?, ?, ?, ?);`;
 
 	db.query(
 		sql,
@@ -91,10 +90,9 @@ router.patch('/:id', (req, res) => {
 		price: req.body.price,
 	};
 
-	const sql =
-		'UPDATE movies SET ' +
-		'movies_title = ?, movies_year = ?, movies_category = ?, movies_rating = ?, ' +
-		'movies_url_banner = ?, movies_price = ? WHERE movies_id = ? ';
+	const sql = `UPDATE movies SET
+			movies_title = ?, movies_year = ?, movies_category = ?, movies_rating = ?,
+			movies_url_banner = ?, movies_price = ? WHERE movies_id = ?`;
 
 	db.query(
 		sql,
