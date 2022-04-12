@@ -4,6 +4,10 @@ const morgan = require('morgan');
 
 const PORT = process.env.PORT || 3001;
 
+const products = require('./routes/products');
+const clients = require('./routes/clients');
+const orders = require('./routes/orders');
+
 const app = express();
 
 app.use(morgan('dev'));
@@ -40,6 +44,10 @@ app.use((req, res, next) => {
 
 	next();
 });
+
+app.use('/products', products);
+app.use('/clients', clients);
+app.use('/orders', orders);
 
 app.use((req, res, next) => {
 	const error = new Error('Not Found...');
