@@ -78,7 +78,7 @@ router.post('/', (req, res) => {
 		(err, result) => {
 			if (err) {
 				return res.status(500).send({
-					message: 'ERROR! Product DID NOT inserted on db',
+					message: 'ERROR! Product DID NOT insert on db',
 					err,
 				});
 			}
@@ -132,7 +132,7 @@ router.patch('/:id', (req, res) => {
 		(err, result) => {
 			if (err) {
 				return res.status(500).send({
-					message: `ERROR! Product ${id} DID NOT updated`,
+					message: `ERROR! Product ${id} DID NOT update`,
 					err,
 				});
 			}
@@ -152,7 +152,7 @@ router.delete('/:id', (req, res) => {
 	db.query(sql, [id], (err, result) => {
 		if (err) {
 			return res.status(500).send({
-				message: 'ERROR! Product DID NOT deleted',
+				message: 'ERROR! Product DID NOT delete',
 				err,
 			});
 		}
