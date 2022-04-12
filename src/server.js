@@ -2,10 +2,6 @@ const express = require('express');
 
 const morgan = require('morgan');
 
-const movies = require('./routes/movies');
-const music = require('./routes/music');
-const marketCart = require('./routes/marketCart');
-
 const PORT = process.env.PORT || 3001;
 
 const app = express();
@@ -44,10 +40,6 @@ app.use((req, res, next) => {
 
 	next();
 });
-
-app.use('/movies', movies);
-app.use('/music', music);
-app.use('/market', marketCart);
 
 app.use((req, res, next) => {
 	const error = new Error('Not Found...');
