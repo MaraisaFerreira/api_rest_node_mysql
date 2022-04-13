@@ -56,7 +56,7 @@ router.post('/', (req, res) => {
 
 	db.query(
 		sql,
-		[order.cod_travels, order.cod_client, order.amount],
+		[order.cod_travel, order.cod_client, order.amount],
 		(err, result) => {
 			if (err) {
 				return res.status(500).send({
@@ -66,7 +66,7 @@ router.post('/', (req, res) => {
 			}
 			res.status(200).send({
 				message: 'Success. Order inserted',
-				cod: result.insertID,
+				cod: result.insertId,
 			});
 		}
 	);

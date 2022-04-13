@@ -31,10 +31,14 @@ router.get('/:id', (req, res) => {
 				err,
 			});
 		}
-		res.status(200).send({
-			message: `Success. GET client cod ${id}.`,
-			result,
-		});
+		result.length < 1
+			? res.status(200).send({
+					message: `Client cod ${id} does not exists`,
+			  })
+			: res.status(200).send({
+					message: `Success. GET client cod ${id}.`,
+					result,
+			  });
 	});
 });
 
@@ -73,7 +77,7 @@ router.post('/', (req, res) => {
 			}
 			res.status(200).send({
 				message: 'Success. Client inserted on db',
-				client_id: result.insertID,
+				client_id: result.insertId,
 			});
 		}
 	);
