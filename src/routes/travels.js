@@ -41,7 +41,8 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
 	const travel = {
-		destination: req.body.destination,
+		city: req.body.city,
+		country: req.body.country,
 		duration: req.body.duration,
 		available: req.body.available,
 		price: req.body.price,
@@ -49,24 +50,26 @@ router.post('/', (req, res) => {
 	};
 
 	if (
-		!travel.destination ||
+		!travel.city ||
+		!travel.country ||
 		!travel.duration ||
 		!travel.available ||
 		!travel.price
 	) {
 		return res.status(400).send({
 			message:
-				'At least fields Destination, Duration, Available and Price MUST BE filled!',
+				'At least fields City, Country, Duration, Available and Price MUST BE filled!',
 		});
 	}
 
 	const sql =
-		'INSERT INTO travels (destination, duration, available, price, url_img) VALUES (?,?,?,?,?)';
+		'INSERT INTO travels (city, country, duration, available, price, url_img) VALUES (?,?,?,?,?,?)';
 
 	db.query(
 		sql,
 		[
-			travel.destination,
+			travel.city,
+			travel.country,
 			travel.duration,
 			travel.available,
 			travel.price,
@@ -81,7 +84,7 @@ router.post('/', (req, res) => {
 			}
 			res.status(200).send({
 				message: 'Success. Travel Inserted.',
-				product_id: result.insertId,
+				travel_id: result.insertId,
 			});
 		}
 	);
@@ -91,7 +94,8 @@ router.patch('/:id', (req, res) => {
 	const id = req.params.id;
 
 	const travel = {
-		destination: req.body.destination,
+		city: req.body.city,
+		country: req.body.country,
 		duration: req.body.duration,
 		available: req.body.available,
 		price: req.body.price,
@@ -99,24 +103,26 @@ router.patch('/:id', (req, res) => {
 	};
 
 	if (
-		!travel.destination ||
+		!travel.city ||
+		!travel.country ||
 		!travel.duration ||
 		!travel.available ||
 		!travel.price
 	) {
 		return res.status(400).send({
 			message:
-				'At least fields Destination, Duration, Available and Price MUST BE filled!',
+				'At least fields City, Country, Duration, Available and Price MUST BE filled!',
 		});
 	}
 
 	const sql =
-		'UPDATE travels SET destination = ?, duration = ?, available = ?, price = ?, url_img = ? WHERE cod = ?';
+		'UPDATE travels SET city = ?, country = ?, duration = ?, available = ?, price = ?, url_img = ? WHERE cod = ?';
 
 	db.query(
 		sql,
 		[
-			travel.destination,
+			travel.city,
+			travel.country,
 			travel.duration,
 			travel.available,
 			travel.price,
