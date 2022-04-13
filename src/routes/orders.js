@@ -40,19 +40,19 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
 	const order = {
-		cod_travels: req.body.cod_travels,
+		cod_travel: req.body.cod_travel,
 		cod_client: req.body.cod_client,
 		amount: req.body.amount,
 	};
 
-	if (!order.cod_travels || !order.cod_client || !order.amount) {
+	if (!order.cod_travel || !order.cod_client || !order.amount) {
 		return res.status(400).send({
 			message: 'All fields MUST BE filled',
 		});
 	}
 
 	const sql =
-		'INSERT INTO orders (cod_travels, cod_client, amount) VALUES (?,?,?)';
+		'INSERT INTO orders (cod_travel, cod_client, amount) VALUES (?,?,?)';
 
 	db.query(
 		sql,
