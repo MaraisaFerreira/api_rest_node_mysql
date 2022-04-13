@@ -41,27 +41,32 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
 	const travel = {
-		to: req.body.to,
+		destination: req.body.destination,
 		duration: req.body.duration,
 		available: req.body.available,
 		price: req.body.price,
 		url_img: req.body.url_img || '',
 	};
 
-	if (!travel.to || !travel.duration || !travel.available || !travel.price) {
+	if (
+		!travel.destination ||
+		!travel.duration ||
+		!travel.available ||
+		!travel.price
+	) {
 		return res.status(400).send({
 			message:
-				'At least fields To, Duration, Available and Price MUST BE filled!',
+				'At least fields Destination, Duration, Available and Price MUST BE filled!',
 		});
 	}
 
 	const sql =
-		'INSERT INTO travels (to, duration, available, price, url_img) VALUES (?,?,?,?,?)';
+		'INSERT INTO travels (destination, duration, available, price, url_img) VALUES (?,?,?,?,?)';
 
 	db.query(
 		sql,
 		[
-			travel.to,
+			travel.destination,
 			travel.duration,
 			travel.available,
 			travel.price,
@@ -86,27 +91,32 @@ router.patch('/:id', (req, res) => {
 	const id = req.params.id;
 
 	const travel = {
-		to: req.body.to,
+		destination: req.body.destination,
 		duration: req.body.duration,
 		available: req.body.available,
 		price: req.body.price,
 		url_img: req.body.url_img || '',
 	};
 
-	if (!travel.to || !travel.duration || !travel.available || !travel.price) {
+	if (
+		!travel.destination ||
+		!travel.duration ||
+		!travel.available ||
+		!travel.price
+	) {
 		return res.status(400).send({
 			message:
-				'At least fields To, Duration, Available and Price MUST BE filled!',
+				'At least fields Destination, Duration, Available and Price MUST BE filled!',
 		});
 	}
 
 	const sql =
-		'UPDATE travels SET to = ?, duration = ?, available = ?, price = ?, url_img = ? WHERE cod = ?';
+		'UPDATE travels SET destination = ?, duration = ?, available = ?, price = ?, url_img = ? WHERE cod = ?';
 
 	db.query(
 		sql,
 		[
-			travel.to,
+			travel.destination,
 			travel.duration,
 			travel.available,
 			travel.price,
