@@ -4,7 +4,7 @@ const morgan = require('morgan');
 
 const PORT = process.env.PORT || 3001;
 
-const products = require('./routes/products');
+const travels = require('./routes/travels');
 const clients = require('./routes/clients');
 const orders = require('./routes/orders');
 
@@ -45,7 +45,7 @@ app.use((req, res, next) => {
 	next();
 });
 
-app.use('/products', products);
+app.use('/travels', travels);
 app.use('/clients', clients);
 app.use('/orders', orders);
 
