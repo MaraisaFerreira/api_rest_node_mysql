@@ -3,7 +3,20 @@ const router = require('express').Router();
 const db = require('../db');
 
 router.get('/', (req, res) => {
-	const sql = 'SELECT * FROM orders';
+	const sql = `SELECT
+									orders.cod,
+									orders.amount,
+									travels.city,
+									travels.country,
+									travels.duration,
+									travels.available,
+									travels.price,
+									clients.name,
+									clients.ID,
+									clients.phone
+							FROM orders
+							INNER JOIN travels ON orders.cod_travel = travels.cod
+							INNER JOIN clients ON orders.cod_client = clients.cod`;
 
 	db.query(sql, (err, result) => {
 		if (err) {
@@ -22,7 +35,21 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
 	const id = req.params.id;
 
-	const sql = 'SELECT * FROM orders WHERE cod = ?';
+	const sql = `SELECT
+								orders.cod,
+								orders.amount,
+								travels.city,
+								travels.country,
+								travels.duration,
+								travels.available,
+								travels.price,
+								clients.name,
+								clients.ID,
+								clients.phone
+							FROM orders
+							INNER JOIN clients ON orders.cod_client = clients.cod
+							INNER JOIN travels ON orders.cod_travel = travels.cod
+							WHERE orders.cod = ?`;
 
 	db.query(sql, [id], (err, result) => {
 		if (err) {
